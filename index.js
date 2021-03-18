@@ -11,7 +11,8 @@ module.exports = function (host, res, req, error, version, ejs, config) {
    if (res.url.startsWith('/static/')){
        if(doesitexist){
            res.writeHead(200)
-           res.write(fs.readFileSync(`${dirname + res.url}`, "utf8"))
+           var e = res.url.split('/static/');
+           res.write(fs.readFileSync(`${dirname + e[1]}`, "utf8"))
        }else{
            res.writeHead(404)
            res.write('404')
