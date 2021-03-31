@@ -9,15 +9,12 @@ module.exports = function (res, req) {
    var page404 = "404"
    var doesitexist = fs.pathExists(`${dirname + res.url}.html`, (err, exists) => {console.log(err);return exists;})
    if (res.url.startsWith('/static/')){
-       res.writeHead(200)
        var e = res.url.split('/static/');
        res.startFile(`${dirname + e[1]}`)
    }else{
        if (doesitexist){
-           res.writeHead(200)
            res.startFile`${dirname + res.url}.html`)
        }else{
-            res.writeHead(404)
             res.startFile(`${dirname + page404}.html`)
        }    
    }
